@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Declares dependencies on JBoss EAP 7.4's Infinispan modules so the WAR
+  can use the server-managed cache defined in standalone-ha.xml.
+  The Infinispan JARs are NOT bundled in the WAR (provided scope in pom.xml).
+-->
+<jboss-deployment-structure>
+    <deployment>
+        <dependencies>
+            <module name="org.infinispan" services="import"/>
+            <module name="org.infinispan.commons" services="import"/>
+            <!-- Use JBoss EAP's SLF4J binding instead of bundling Logback -->
+            <module name="org.slf4j"/>
+            <module name="org.slf4j.impl"/>
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>

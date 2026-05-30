@@ -1,0 +1,4 @@
+com/example/springinfinispan/service/CacheService.class
+com/example/springinfinispan/web/CacheController.class
+com/example/springinfinispan/config/InfinispanConfig.class
+com/example/springinfinispan/SpringInfinispanApplication.class
