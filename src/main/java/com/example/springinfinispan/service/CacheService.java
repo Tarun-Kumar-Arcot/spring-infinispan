@@ -1,6 +1,7 @@
 package com.example.springinfinispan.service;
 
 import org.infinispan.Cache;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class CacheService {
 
     private final Cache<String, String> cache;
 
-    public CacheService(Cache<String, String> cache) {
+    public CacheService(@Lazy Cache<String, String> cache) {
         this.cache = cache;
     }
 
