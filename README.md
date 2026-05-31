@@ -15,6 +15,28 @@ A Spring Boot application deployable on JBoss EAP 7.4 that provides a REST API f
 | Packaging       | WAR             |
 
 ---
+## Configure JBoss EAP standalone-ha.xml using jboss-cli:-
+
+~~~
+batch
+  /subsystem=infinispan/cache-container=custom:add(statistics-enabled=true)
+  /subsystem=infinispan/cache-container=custom/transport=jgroups:add(lock-timeout=60000)
+  /subsystem=infinispan/cache-container=custom/local-cache=custom-cache:add(statistics-enabled=true)
+  /subsystem=infinispan/cache-container=custom/local-cache=custom-cache/store=file:add(relative-to=jboss.server.data.dir,path=custom-cache,passivation=false,purge=false,preload=true,shared=false)
+  /subsystem=infinispan/cache-container=custom:write-attribute(name=default-cache,value=custom-cache)
+  run-batch
+~~~
+
+  or in the infinispan subsystem add the following:-
+
+~~~
+  <cache-container name="custom" default-cache="custom-cache" statistics-enabled="true">
+    <transport lock-timeout="60000"/>
+    <local-cache name="custom-cache" statistics-enabled="true">
+    <file-store path="custom-cache" relative-to="jboss.server.data.dir" passivation="false" preload="true" purge="false" shared="false"/>
+    </local-cache>
+  </cache-container>
+~~~
 
 ## Build
 
